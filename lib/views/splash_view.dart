@@ -1,4 +1,5 @@
-import 'package:esprit_spotted/main.dart';
+import 'package:esprit_spotted/views/homepage.dart';
+import 'package:esprit_spotted/views/wrapper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -6,8 +7,6 @@ import 'package:provider/provider.dart';
 import '../src/theme_provider.dart';
 
 class Splash extends StatefulWidget {
-  static const String routName = "/splash";
-
   const Splash({super.key});
 
   @override
@@ -20,7 +19,7 @@ class _SplashState extends State<Splash> {
     super.initState();
     getAppTheme().then((_) {
       Future.delayed(const Duration(seconds: 2), () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Homepage()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Wrapper()));
       });
     });
   }

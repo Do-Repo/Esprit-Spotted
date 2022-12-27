@@ -59,5 +59,6 @@ class DefaultFirebaseOptions {
     projectId: 'esprit-spotted',
     authDomain: 'esprit-spotted.firebaseapp.com',
     storageBucket: 'esprit-spotted.appspot.com',
+    measurementId: 'G-K4BE6MEM96',
   );
 }
