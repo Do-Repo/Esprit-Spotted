@@ -4,12 +4,12 @@ class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       primaryColor: const Color(0XFFD69031),
-      backgroundColor: isDarkTheme ? const Color(0XFF17181A) : const Color(0XFFFFFFFF),
+      backgroundColor: isDarkTheme ? const Color(0XFF17181A) : const Color(0XFFD3D3D3),
       indicatorColor: isDarkTheme ? const Color(0XFF2D2D2D) : const Color(0XFFE8EFF5),
       hintColor: isDarkTheme ? const Color(0XFFFFFFFF) : const Color(0XFF000000),
-      highlightColor: isDarkTheme ? Colors.red : Colors.white,
-      hoverColor: isDarkTheme ? const Color(0xff3A3A3B) : const Color(0xff4285F4),
-      focusColor: isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      focusColor: Colors.transparent,
       disabledColor: Colors.grey,
       textSelectionTheme: TextSelectionThemeData(selectionColor: isDarkTheme ? Colors.white : Colors.black),
       cardColor: isDarkTheme ? const Color(0XFF2D2D2D) : const Color(0XFFE8EFF5),

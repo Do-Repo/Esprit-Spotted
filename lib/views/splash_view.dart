@@ -1,6 +1,7 @@
 import 'package:esprit_spotted/views/homepage.dart';
 import 'package:esprit_spotted/views/wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 
@@ -37,18 +38,16 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
-
     return Scaffold(
       body: Center(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: const [
-          Icon(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
+          const Icon(
             Icons.remove_red_eye_outlined,
             size: 50,
           ),
           Text(
             "Esprit Spotted",
-            style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Inter", fontSize: 30),
+            style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 30),
           )
         ]),
       ),

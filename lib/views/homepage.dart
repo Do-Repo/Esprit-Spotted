@@ -1,7 +1,12 @@
+import 'package:esprit_spotted/services/message_service.dart';
 import 'package:esprit_spotted/utils/constants.dart';
 import 'package:esprit_spotted/views/auth_dialog.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../src/theme_provider.dart';
 
@@ -13,6 +18,14 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  TextEditingController textController = TextEditingController();
+  String githubURL = "https://github.com/Do-Repo/Esprit-Spotted.git";
+
+  void onComplete() {
+    textController.clear();
+    EasyLoading.showToast("Message received!");
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<DarkThemeProvider>(context);
@@ -41,7 +54,7 @@ class _HomepageState extends State<Homepage> {
               )),
           title: Text(
             "Esprit Spotted",
-            style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold, color: Theme.of(context).hintColor),
+            style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: Theme.of(context).hintColor),
           ),
         ),
         body: CustomScrollView(
@@ -55,15 +68,16 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Welcome to Esprit Spotted, this site was made by esprit students for esprit students to post messages anonymously ",
-                        style: TextStyle(fontFamily: "Inter"),
+                        style: GoogleFonts.inter(fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20.0),
                         child: TextField(
                             maxLines: 8,
                             maxLength: 255,
+                            controller: textController,
                             cursorColor: Theme.of(context).primaryColor,
                             decoration: InputDecoration(
                                 filled: true,
@@ -75,17 +89,22 @@ class _HomepageState extends State<Homepage> {
                       ),
                       const SizedBox(height: 10),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          if (textController.text.isNotEmpty) {
+                            EasyLoading.show();
+                            await MessageService().postMessage(textController.text, onComplete).then((value) => EasyLoading.dismiss());
+                          }
+                        },
                         onHover: (val) {},
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: const BorderRadius.all(Radius.circular(5))),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 "Send Message",
-                                style: TextStyle(fontFamily: "Inter", color: Colors.white, fontWeight: FontWeight.bold),
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -97,12 +116,14 @@ class _HomepageState extends State<Homepage> {
                           textAlign: TextAlign.center,
                           text: TextSpan(
                               text: "Don't trust us?\nWe're opensource at ",
-                              style: TextStyle(
-                                fontFamily: "Inter",
+                              style: GoogleFonts.inter(
                                 color: Theme.of(context).hintColor,
                               ),
                               children: [
-                                TextSpan(text: "github.com", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
+                                TextSpan(
+                                    text: "github.com",
+                                    recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(githubURL)),
+                                    style: GoogleFonts.inter(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))
                               ]))
                     ],
                   ),

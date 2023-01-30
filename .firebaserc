@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "esprit-spotted"
-  }
+    "default": "esprit-spotted-2ef10",
+    "esprit-spotted": "esprit-spotted-2ef10"
+  },
+  "targets": {},
+  "etags": {}
 }

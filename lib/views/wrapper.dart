@@ -1,3 +1,4 @@
+import 'package:esprit_spotted/views/dashboard.dart';
 import 'package:esprit_spotted/views/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     var user = Provider.of<User?>(context, listen: true);
     if (user != null) {
-      return Container();
+      return const Dashboard();
     } else {
       return const Homepage();
     }

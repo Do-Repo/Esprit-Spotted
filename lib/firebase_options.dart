@@ -53,12 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDViTwCugHrCFhsEi7cW2dNNAddkfeGmNk',
-    appId: '1:1070016847:web:e1ba017fa12580d77b3d3a',
-    messagingSenderId: '1070016847',
-    projectId: 'esprit-spotted',
-    authDomain: 'esprit-spotted.firebaseapp.com',
-    storageBucket: 'esprit-spotted.appspot.com',
-    measurementId: 'G-K4BE6MEM96',
+    apiKey: 'AIzaSyC8bTimzqLk7Kh-9xBMw7GlkIXSdwXnNHE',
+    appId: '1:283341979176:web:5fa4c2ca064b0e8bc1bf1d',
+    messagingSenderId: '283341979176',
+    projectId: 'esprit-spotted-2ef10',
+    authDomain: 'esprit-spotted-2ef10.firebaseapp.com',
+    storageBucket: 'esprit-spotted-2ef10.appspot.com',
+    measurementId: 'G-3SRVT660QB',
   );
 }

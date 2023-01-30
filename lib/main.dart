@@ -1,4 +1,5 @@
 import 'package:esprit_spotted/firebase_options.dart';
+import 'package:esprit_spotted/services/app_settings.dart';
 import 'package:esprit_spotted/services/auth_service.dart';
 import 'package:esprit_spotted/theme.dart';
 import 'package:esprit_spotted/src/theme_provider.dart';
@@ -17,7 +18,8 @@ void main() async {
 
   runApp(MultiProvider(providers: [
     StreamProvider<User?>.value(value: AuthService().onAuthStateChanged, initialData: null),
-    ChangeNotifierProvider(create: (_) => DarkThemeProvider())
+    ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
+    ChangeNotifierProvider(create: (_) => AppProvider())
   ], child: const MyApp()));
 }
 

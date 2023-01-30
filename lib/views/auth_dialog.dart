@@ -2,6 +2,7 @@ import 'package:esprit_spotted/services/auth_service.dart';
 import 'package:esprit_spotted/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<void> showAuthDialog(BuildContext context) async {
   String username = "", password = "";
@@ -63,7 +64,7 @@ Future<void> showAuthDialog(BuildContext context) async {
           TextButton(
             child: Text(
               'Sign in',
-              style: TextStyle(fontFamily: "Inter", color: Theme.of(context).primaryColor),
+              style: GoogleFonts.inter(color: Theme.of(context).primaryColor),
             ),
             onPressed: () {
               if (formKey.currentState!.validate()) {
