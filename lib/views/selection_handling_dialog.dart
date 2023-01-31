@@ -1,9 +1,11 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
+import 'dart:js' as js;
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -13,6 +15,8 @@ import 'package:esprit_spotted/services/app_settings.dart';
 import 'package:esprit_spotted/views/widgets/close_dialog_button.dart';
 import 'package:esprit_spotted/views/widgets/direction_buttons.dart';
 import 'package:esprit_spotted/views/widgets/share_all_button.dart';
+
+import 'package:universal_html/html.dart' as html;
 
 import '../models/screenshot_viewmodel.dart';
 
@@ -49,15 +53,22 @@ class _SelectionDialogState extends State<SelectionDialog> {
     List<Uint8List> messageImages = [];
     for (var element in selectedMessages) {
       await controller
-          .captureFromWidget(ScreenShotModel(message: element), context: context, targetSize: const Size(450, 250))
+          .captureFromWidget(MessagePreview(message: element), context: context, targetSize: const Size(450, 250))
           .then((capturedImage) async {
         messageImages.add(capturedImage);
       });
     }
-    EasyLoading.dismiss();
+
+    int index = 1;
     for (var element in messageImages) {
-      await WebImageDownloader.downloadImageFromUInt8List(uInt8List: element);
+      js.context.callMethod("webSaveAs", [
+        html.Blob([element]),
+        "test_$index.jpg"
+      ]);
+
+      index++;
     }
+    EasyLoading.dismiss();
   }
 
   @override
@@ -100,7 +111,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                     controller: pageController,
                     itemCount: app.selectedMessages!.length,
                     itemBuilder: (context, index) {
-                      return ScreenShotModel(message: app.selectedMessages![index]);
+                      return MessagePreview(message: app.selectedMessages![index]);
                     }))
           ]))),
           const SizedBox(height: 10),

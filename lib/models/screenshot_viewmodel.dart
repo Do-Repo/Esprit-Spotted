@@ -1,18 +1,17 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'message_model.dart';
 
-class ScreenShotModel extends StatefulWidget {
-  const ScreenShotModel({super.key, required this.message});
+class MessagePreview extends StatefulWidget {
+  const MessagePreview({super.key, required this.message});
   final Message message;
   @override
-  State<ScreenShotModel> createState() => _ScreenShotModelState();
+  State<MessagePreview> createState() => _MessagePreviewState();
 }
 
-class _ScreenShotModelState extends State<ScreenShotModel> {
+class _MessagePreviewState extends State<MessagePreview> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +20,11 @@ class _ScreenShotModelState extends State<ScreenShotModel> {
         padding: const EdgeInsets.all(10),
         // margin: const EdgeInsets.symmetric(horizontal: 2.5),
         decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
-        child: Flexible(
-          fit: FlexFit.tight,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              border: Border.all(style: BorderStyle.solid, width: 3, color: Theme.of(context).primaryColor),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,

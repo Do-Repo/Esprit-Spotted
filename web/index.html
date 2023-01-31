@@ -24,10 +24,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="esprit_spotted">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" href="app_logo.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="app_logo.png"/>
 
   <title>esprit_spotted</title>
   <link rel="manifest" href="manifest.json">
@@ -40,6 +40,14 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+  
+  <script>
+  function webSaveAs(blob, name) {
+    saveAs(blob, name);
+  }
+  </script>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
